@@ -12,7 +12,8 @@ module.exports = function (config) {
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
       require('@angular-devkit/build-angular/plugins/karma'),
-	  require('karma-sonarqube-unit-reporter')
+	  require('karma-sonarqube-unit-reporter'),
+      require('karma-sonarqube-reporter')
     ],
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
@@ -22,11 +23,16 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly', 'text-summary'],
       fixWebpackSourcePaths: true
     },
-    reporters: ['progress', 'kjhtml','sonarqubeUnit'],
-  	sonarQubeUnitReporter: {
-      sonarQubeVersion: 'LATEST',
-      outputFile: 'coverage/ng-unit-test/unit-test-report.xml',
-      useBrowserName: false
+    reporters: ['progress', 'kjhtml','sonarqube','coverage'],
+  	sonarqubeReporter: {
+      basePath: 'src/app',
+      outputFolder: 'coverage/ng-unit-test',
+      filePattern: '**/*spec.ts',
+      encoding: 'utf-8',
+      legacyMode: false,
+      reportName: (metadata) => {
+        return 'unit-test-report.xml';
+      }
     },
     port: 9876,
     colors: true,
