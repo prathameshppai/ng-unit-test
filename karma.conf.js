@@ -22,7 +22,7 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly', 'text-summary'],
       fixWebpackSourcePaths: true
     },
-    reporters: ['progress', 'kjhtml','sonarqube','coverage'],
+    reporters: ['progress', 'kjhtml','sonarqube'],
   	sonarqubeReporter: {
       basePath: 'src/app',
       outputFolder: 'coverage/ng-unit-test',
